@@ -2,14 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>HCD Life · Sua casa, todo mundo conectado</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Life - Gestor Doméstico | Organize sua vida financeira e familiar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* RESET E VARIÁVEIS */
         * {
             margin: 0;
             padding: 0;
@@ -17,871 +13,1236 @@
         }
 
         :root {
-            --primary: #7c3aed;
-            --primary-dark: #6d28d9;
-            --primary-light: #c4b5fd;
-            --primary-soft: #8b5cf6;
-            --secondary: #0f172a;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-900: #0f172a;
-            --success: #10b981;
-            --success-light: #d1fae5;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
-            --radius-sm: 12px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
-            --radius-full: 9999px;
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --secondary: #f39c12;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --purple: #9b59b6;
+            --purple-light: #d7bde2;
+            --purple-dark: #8e44ad;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-soft: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #ffffff;
-            color: var(--gray-900);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* CONTAINER FLUIDO */
         .container {
-            width: 100%;
-            padding: 0 20px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* HEADER MOBILE-FIRST */
-        .navbar {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 12px 0;
-            position: sticky;
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .navbar .container {
+        .header-content {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
+            font-size: 24px;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--primary-dark);
+            gap: 10px;
         }
 
         .logo i {
-            font-size: 1.75rem;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 28px;
         }
 
-        /* Menu sanduíche para mobile */
-        .menu-toggle {
+        .nav-buttons {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: var(--gray-100);
-            border-radius: var(--radius-full);
-            cursor: pointer;
-            color: var(--primary);
-            font-size: 1.5rem;
+            gap: 15px;
         }
 
-        .nav-links {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 20px;
-            flex-direction: column;
-            gap: 16px;
-            box-shadow: var(--shadow-lg);
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .nav-links.show {
-            display: flex;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray-700);
-            font-weight: 500;
-            font-size: 1.1rem;
-            padding: 8px 0;
-        }
-
-        .nav-links button {
-            width: 100%;
-            margin-top: 8px;
-        }
-
-        /* Botões */
-        .btn-outline {
-            border: 2px solid var(--primary-light);
-            background: transparent;
-            padding: 12px 24px;
-            border-radius: var(--radius-full);
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
             font-weight: 600;
-            color: var(--primary-dark);
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s;
-        }
-
-        .btn-outline:active {
-            background: var(--primary-light);
-            transform: scale(0.98);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transition: all 0.3s ease;
             border: none;
-            padding: 14px 28px;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 8px 16px rgba(124, 58, 237, 0.25);
-            font-size: 1rem;
-            transition: all 0.2s;
-            width: 100%;
-        }
-
-        .btn-primary:active {
-            transform: scale(0.97);
-            box-shadow: 0 4px 8px rgba(124, 58, 237, 0.3);
-        }
-
-        .btn-large {
-            padding: 16px 32px;
-            font-size: 1.1rem;
-        }
-
-        /* HERO - mobile first */
-        .hero {
-            padding: 40px 0 60px;
-        }
-
-        .hero-content {
-            text-align: center;
-        }
-
-        .free-trial-badge {
+            font-size: 16px;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--success);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
             color: white;
-            padding: 8px 18px;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 18px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 150px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 48px;
             line-height: 1.2;
-            margin-bottom: 16px;
-            color: var(--secondary);
+            margin-bottom: 20px;
         }
 
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            margin-bottom: 28px;
-            padding: 0 10px;
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
         }
 
         .hero-image {
-            width: 100%;
-            aspect-ratio: 4/3;
-            background: linear-gradient(145deg, var(--primary-light), var(--primary-soft));
-            border-radius: var(--radius-lg);
-            margin-top: 40px;
-            box-shadow: var(--shadow-lg);
-            background-image: url('https://placehold.co/800x600/7c3aed/ffffff?text=HCD+Life+App');
-            background-size: cover;
-            background-position: center;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
 
-        /* SEÇÕES */
-        .section {
-            padding: 60px 0;
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .image-placeholder::after {
+            content: '🖼️ IMAGEM DO APP';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark);
         }
 
-        .section-title h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 12px;
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 60px;
         }
 
-        .section-title p {
-            color: var(--gray-600);
-            font-size: 1rem;
-            padding: 0 16px;
-        }
-
-        /* CARDS - otimizados para mobile */
         .features-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .feature-card {
+            padding: 40px 30px;
+            border-radius: 20px;
             background: white;
-            border-radius: var(--radius-lg);
-            padding: 28px 24px;
-            border: 1px solid var(--gray-200);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.2s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .feature-card:active {
-            border-color: var(--primary-light);
-            background: var(--gray-50);
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--gray-100);
-            border-radius: 18px;
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 32px;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--secondary);
+        .feature-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
         }
 
-        .example-list {
-            list-style: none;
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
         }
 
-        .example-list li {
-            margin-bottom: 18px;
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            color: var(--gray-700);
-            font-size: 0.95rem;
+        /* App Screenshots */
+        .screenshots {
+            padding: 80px 0;
+            background: var(--light);
         }
 
-        .example-list i {
-            color: var(--success);
-            font-size: 1.1rem;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        .real-example {
-            margin-top: 24px;
-            padding: 20px;
-            background: var(--gray-50);
-            border-radius: var(--radius-md);
-            font-style: italic;
-            color: var(--gray-700);
-            border-left: 3px solid var(--primary);
-            font-size: 0.9rem;
-        }
-
-        /* Lista de compras em grid mobile */
-        .shopping-features {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .shopping-features div {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
-            color: var(--gray-700);
-        }
-
-        .shopping-features i {
-            color: var(--success);
-            font-size: 1.1rem;
-            width: 24px;
-        }
-
-        /* Destaque compartilhamento */
-        .share-highlight {
-            text-align: center;
-            margin-top: 40px;
-            padding: 40px 24px;
-            background: linear-gradient(135deg, var(--gray-50), white);
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--gray-200);
-        }
-
-        .share-highlight i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .share-highlight h3 {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-        }
-
-        .share-highlight p {
-            color: var(--gray-600);
-            font-size: 1rem;
-        }
-
-        /* VÍDEOS */
-        .videos-section {
-            background: var(--gray-50);
-            border-radius: var(--radius-xl);
-            padding: 40px 20px;
-        }
-
-        .video-grid {
-            display: flex;
-            flex-direction: column;
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 40px;
+        }
+
+        .screenshot-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-card:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .screenshot-placeholder i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .screenshot-placeholder::after {
+            content: '📱 TELA DO APP';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-image {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            height: 200px;
+        }
+
+        .benefit-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .benefit-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .benefit-description {
+            color: var(--gray);
+        }
+
+        /* Video Section */
+        .videos {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .video-card {
-            background: white;
-            border-radius: var(--radius-lg);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
         }
 
-        .video-thumb {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .video-thumb i {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 16px;
-            border-radius: 50%;
-            box-shadow: var(--shadow-md);
-        }
-
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-info h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .video-info p {
-            color: var(--gray-600);
-            font-size: 0.9rem;
-        }
-
-        /* DEPOIMENTOS */
-        .testimonials-grid {
+        .video-placeholder {
+            background: linear-gradient(135deg, #333, #000);
+            height: 300px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        .video-placeholder i {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .video-placeholder::after {
+            content: '▶️ VÍDEO DEMONSTRATIVO';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .video-title {
+            padding: 15px;
+            font-weight: 600;
+            text-align: center;
+            background: white;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .testimonial-card {
+            padding: 30px;
+            border-radius: 20px;
             background: white;
-            padding: 28px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--gray-200);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .stars {
-            color: #f59e0b;
-            margin-bottom: 16px;
-            font-size: 1rem;
-        }
-
-        /* CTA - centralizado e mobile first */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            border-radius: var(--radius-xl);
-            padding: 60px 24px;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .cta-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(4px);
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: white;
-            line-height: 1.3;
-        }
-
-        .cta-description {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 28px;
-            padding: 0 10px;
-        }
-
-        .btn-cta {
-            background: white;
-            color: var(--primary-dark);
-            border: none;
-            padding: 16px 40px;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        .testimonial-text {
+            font-style: italic;
             margin-bottom: 20px;
-            width: 100%;
-            max-width: 320px;
+            color: var(--dark);
         }
 
-        .btn-cta:active {
-            transform: scale(0.97);
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .security-note {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            color: white;
+            font-weight: 700;
         }
 
-        /* FOOTER */
-        .footer {
-            padding: 32px 0;
-            border-top: 1px solid var(--gray-200);
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .pricing .section-title,
+        .pricing .section-subtitle {
+            color: white;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: white;
+            color: var(--dark);
+            border-radius: 20px;
+            padding: 40px;
+            width: 350px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--secondary);
+        }
+
+        .pricing-card.popular::before {
+            content: '🔥 MAIS VENDIDO';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pricing-header {
             text-align: center;
-            color: var(--gray-600);
-            font-size: 0.9rem;
+            margin-bottom: 30px;
         }
 
-        .footer span {
-            display: block;
-            margin-bottom: 8px;
+        .pricing-name {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
-        /* BREAKPOINT TABLET/DESKTOP */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 1200px;
-                padding: 0 32px;
-            }
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
 
-            .menu-toggle {
-                display: none;
-            }
+        .pricing-price small {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--gray);
+        }
 
-            .nav-links {
-                display: flex;
-                position: static;
-                flex-direction: row;
-                background: transparent;
-                padding: 0;
-                box-shadow: none;
-                border: none;
-                gap: 32px;
-                align-items: center;
-            }
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+        }
 
-            .nav-links a {
-                font-size: 1rem;
-                padding: 0;
-            }
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-            .nav-links button {
-                width: auto;
-                margin-top: 0;
-            }
+        .pricing-features i {
+            color: var(--success);
+        }
 
-            .btn-primary {
-                width: auto;
-            }
+        .pricing-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--gradient);
+            color: white;
+            font-size: 16px;
+        }
 
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
             .hero-content {
-                text-align: left;
-                max-width: 600px;
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .hero-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 50px;
-                align-items: center;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-
-            .video-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-
-            .testimonials-grid {
-                flex-direction: row;
+            .hero-stats {
                 justify-content: center;
-                gap: 30px;
             }
 
-            .testimonial-card {
-                max-width: 400px;
+            .benefits-grid,
+            .testimonials-grid,
+            .videos-grid,
+            .screenshots-grid {
+                grid-template-columns: 1fr;
             }
 
-            .shopping-features {
-                flex-direction: row;
-                justify-content: space-between;
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            .social-links {
+                justify-content: center;
             }
 
-            .footer span {
-                display: inline;
-                margin-bottom: 0;
+            .pricing-card.popular {
+                transform: scale(1);
             }
         }
 
-        /* Ajustes desktop maiores */
-        @media (min-width: 1024px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .section {
-                padding: 80px 0;
-            }
-            
-            .cta-section {
-                padding: 80px 40px;
-            }
-            
-            .cta-section h2 {
-                font-size: 2.5rem;
-            }
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Badge */
+        .trial-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                My Life
+            </div>
+            <div class="nav-buttons">
+                <a href="#pricing" class="btn btn-outline">
+                    <i class="fas fa-crown"></i> Assinar
+                </a>
+                <a href="https://app.mylife.com.br" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+        </div>
+    </header>
 
-<nav class="navbar">
-    <div class="container">
-        <div class="logo">
-            <i class="fas fa-home"></i> HCD Life
-        </div>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="#funciona" onclick="toggleMenu()">Como funciona</a>
-            <a href="#recursos" onclick="toggleMenu()">Recursos</a>
-            <a href="#depoimentos" onclick="toggleMenu()">Quem usa</a>
-            <button class="btn-outline" onclick="alert('30 dias grátis liberados!'); toggleMenu()">Experimente grátis</button>
-        </div>
-    </div>
-</nav>
-
-<main>
-    <!-- HERO -->
     <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="free-trial-badge"><i class="fas fa-gift"></i> 30 DIAS GRÁTIS – SEM CARTÃO</span>
-                <h1>Sua casa, <span>todo mundo</span> conectado</h1>
-                <p>Compartilhe eventos, contas, compras e finanças com todo mundo da casa. Cada um colabora, e a organização acontece naturalmente.</p>
-                <button class="btn-primary btn-large" onclick="alert('✅ Comece agora 30 dias grátis!')">
-                    <i class="fas fa-rocket"></i> Testar grátis
-                </button>
-            </div>
-            <div class="hero-image"></div>
-        </div>
-    </section>
-
-    <!-- FUNCIONALIDADES -->
-    <section class="container section" id="funciona">
-        <div class="section-title">
-            <h2>A vida em família fica mais simples</h2>
-            <p>Cada um abre o app quando quer e vê tudo que precisa</p>
-        </div>
-
-        <div class="features-grid">
-            <!-- Eventos -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
-                <h3>Agenda de todos</h3>
-                <ul class="example-list">
-                    <li><i class="fas fa-users"></i> <strong>Consulta da vovó</strong> – uma vez por mês. Todo mundo vê no calendário.</li>
-                    <li><i class="fas fa-building"></i> <strong>Reunião do condomínio</strong> – dia 10, 20h. Basta um cadastrar.</li>
-                    <li><i class="fas fa-birthday-cake"></i> <strong>Aniversários</strong> – coloca uma vez, aparece todo ano.</li>
-                </ul>
-                <div class="real-example">
-                    <i class="fas fa-quote-left"></i> Família Souza (6 pessoas) nunca mais perdeu uma consulta ou reunião.
+        <div class="container hero-content">
+            <div>
+                <span class="trial-badge"><i class="fas fa-gift"></i> 30 DIAS GRÁTIS</span>
+                <h1 class="hero-title">Organize sua vida financeira e familiar em um só lugar</h1>
+                <p class="hero-subtitle">
+                    Controle contas, eventos, gastos, empréstimos e lista de compras. 
+                    Tudo isso com múltiplos usuários e notificações inteligentes.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10k+</div>
+                        <div class="stat-label">Usuários ativos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50k+</div>
+                        <div class="stat-label">Contas pagas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfação</div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <a href="#pricing" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> Começar Grátis
+                    </a>
                 </div>
             </div>
-
-            <!-- Contas -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-file-invoice"></i></div>
-                <h3>Contas organizadas</h3>
-                <ul class="example-list">
-                    <li><i class="fas fa-bolt"></i> <strong>Luz, água, internet</strong> – cadastre o código PIX. Todo mês na lista.</li>
-                    <li><i class="fas fa-credit-card"></i> <strong>Fatura do cartão</strong> – dia 15. Quem pagar marca como pago.</li>
-                    <li><i class="fas fa-graduation-cap"></i> <strong>Parcelas do curso</strong> – recorrente. Saldo atualiza na hora.</li>
-                </ul>
-                <div class="real-example">
-                    <i class="fas fa-quote-left"></i> Família Andrade economizou R$ 240 em multas no primeiro mês.
-                </div>
-            </div>
-
-            <!-- Controle financeiro -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
-                <h3>Visão do dinheiro</h3>
-                <ul class="example-list">
-                    <li><i class="fas fa-shopping-cart"></i> <strong>Compra no mercado</strong> – R$ 350 em "alimentação". Sai do saldo.</li>
-                    <li><i class="fas fa-dog"></i> <strong>Emergência pet</strong> – categoria personalizada. Saldo reflete na hora.</li>
-                    <li><i class="fas fa-wallet"></i> <strong>Saldo da semana</strong> – todo mundo vê quanto ainda tem.</li>
-                </ul>
-                <div class="real-example">
-                    <i class="fas fa-quote-left"></i> Casal Rodrigues descobriu que gastava R$ 600 por mês em fast-food.
-                </div>
-            </div>
-
-            <!-- GIROS -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-hand-holding-usd"></i></div>
-                <h3>Giros e empréstimos</h3>
-                <ul class="example-list">
-                    <li><i class="fas fa-arrow-right"></i> <strong>Emprestou dinheiro?</strong> Crie um giro com o nome da pessoa e o valor. Registre cada devolução.</li>
-                    <li><i class="fas fa-arrow-left"></i> <strong>Pegou emprestado?</strong> Anote o valor e marque quando pagar cada parcela.</li>
-                    <li><i class="fas fa-redo-alt"></i> <strong>Controle total</strong> – veja histórico, quanto já pagou/recebeu e saldo atual.</li>
-                </ul>
-                <div class="real-example">
-                    <i class="fas fa-quote-left"></i> "Meu primo me emprestou R$ 500. Criei um giro e fui marcando cada parcela. Ele via no app que eu tava pagando."
-                </div>
-            </div>
-        </div>
-
-        <!-- LISTA DE COMPRAS DESTAQUE -->
-        <div class="feature-card" style="margin-top: 24px;">
-            <div class="feature-icon"><i class="fas fa-shopping-basket"></i></div>
-            <h3>Lista de compras compartilhada</h3>
-            <div class="shopping-features">
-                <div><i class="fas fa-milk"></i> "Amor, compra leite?" – adiciona no app, o outro vê na hora</div>
-                <div><i class="fas fa-check-double"></i> Itens comprados somem. Só o que falta</div>
-                <div><i class="fas fa-sort-amount-up"></i> Contador de itens: de olho no que precisa</div>
-            </div>
-            <div class="real-example" style="margin-top: 20px;">
-                <i class="fas fa-quote-left"></i> Família Lima reduziu o desperdício em 22% – compram só o que realmente falta.
-            </div>
-        </div>
-
-        <!-- COMPARTILHAMENTO HIGHLIGHT -->
-        <div class="share-highlight">
-            <i class="fas fa-user-friends"></i>
-            <h3>Convide quem mora com você</h3>
-            <p>Podem ser 2, 3, 6 pessoas. Cada uma com seu nome, vendo os mesmos eventos e listas. Todos sabem de tudo, naturalmente.</p>
-        </div>
-    </section>
-
-    <!-- VÍDEOS -->
-    <section class="container section videos-section" id="recursos">
-        <div class="section-title">
-            <h2>Veja como é simples</h2>
-            <p>Espaço reservado para seus vídeos</p>
-        </div>
-
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-thumb" style="background-image: url('https://placehold.co/640x360/7c3aed/ffffff?text=▶+Contas')">
-                    <i class="fas fa-play-circle"></i>
-                </div>
-                <div class="video-info">
-                    <h4>Contas recorrentes</h4>
-                    <p>2 min – cadastrando contas que se repetem</p>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumb" style="background-image: url('https://placehold.co/640x360/ec4899/ffffff?text=▶+Eventos')">
-                    <i class="fas fa-play-circle"></i>
-                </div>
-                <div class="video-info">
-                    <h4>Calendário compartilhado</h4>
-                    <p>3 min – eventos para todo mundo ver</p>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumb" style="background-image: url('https://placehold.co/640x360/10b981/ffffff?text=▶+Giros')">
-                    <i class="fas fa-play-circle"></i>
-                </div>
-                <div class="video-info">
-                    <h4>Giros: controle empréstimos</h4>
-                    <p>1 min – quem deve e quanto</p>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumb" style="background-image: url('https://placehold.co/640x360/f59e0b/ffffff?text=▶+Lista')">
-                    <i class="fas fa-play-circle"></i>
-                </div>
-                <div class="video-info">
-                    <h4>Lista colaborativa</h4>
-                    <p>2 min – todos adicionam itens</p>
+            <div class="hero-image">
+                <!-- ESPAÇO PARA IMAGEM DO APP - PRINCIPAL -->
+                <div class="image-placeholder" style="height: 500px;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>📱 TELA PRINCIPAL DO APP</p>
+                        <p style="font-size: 12px; margin-top: 10px;">[ substitua por: hero-app-screenshot.jpg ]</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DEPOIMENTOS -->
-    <section class="container section" id="depoimentos">
-        <div class="section-title">
-            <h2>Quem usa recomenda</h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Tudo que você precisa em um só app</h2>
+            <p class="section-subtitle">
+                My Life reúne todas as ferramentas para você e sua família organizarem 
+                as finanças, compromissos e tarefas diárias.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="feature-title">Contas a Pagar</h3>
+                    <p class="feature-description">
+                        Controle contas fixas e recorrentes com vencimento, código de barras e 
+                        pagamento com apenas um clique.
+                    </p>
                 </div>
-                <p style="margin-bottom: 20px;">“Somos 4 aqui em casa. Cada um coloca os compromissos e todo mundo vê. Nunca mais teve briga de 'eu não sabia'.”</p>
-                <p><strong>— Mariana</strong></p>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Eventos da Família</h3>
+                    <p class="feature-description">
+                        Crie eventos com ícones coloridos, horários e locais. Ideal para 
+                        aniversários, consultas médicas e compromissos.
+                    </p>
                 </div>
-                <p style="margin-bottom: 20px;">“Uso com meu pai e meu irmão. A gente divide as contas e a lista de mercado. Simples e resolve.”</p>
-                <p><strong>— Rafael</strong></p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3 class="feature-title">Gastos Diários</h3>
+                    <p class="feature-description">
+                        Registre gastos por categoria e veja onde seu dinheiro está sendo gasto. 
+                        Gráficos detalhados por mês.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="feature-title">Giros (Empréstimos)</h3>
+                    <p class="feature-description">
+                        Controle empréstimos com amigos e familiares. Saiba exatamente quem deve 
+                        quanto e quando.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="feature-title">Lista de Compras</h3>
+                    <p class="feature-description">
+                        Crie e compartilhe listas de compras. Marque os itens comprados e veja 
+                        o histórico.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="feature-title">Saldo Central</h3>
+                    <p class="feature-description">
+                        Tenha um saldo único que é atualizado automaticamente com pagamentos 
+                        e gastos.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="container">
-        <div class="cta-section">
-            <div class="cta-badge">
-                <i class="fas fa-lock-open"></i> 30 DIAS GRÁTIS – SEM CARTÃO
-            </div>
-            <h2>Experimente com sua família<br>por um mês</h2>
-            <p class="cta-description">Não pedimos dados de pagamento. Só queremos que vocês sintam a diferença.</p>
-            <button class="btn-cta" onclick="alert('✅ Boas-vindas! Seu teste de 30 dias já está ativo.')">
-                <i class="fas fa-gem"></i> Quero testar grátis
-            </button>
-            <div class="security-note">
-                <i class="fas fa-shield-alt"></i> Segurança total. Cancele quando quiser.
+    <section class="screenshots">
+        <div class="container">
+            <h2 class="section-title">Conheça o aplicativo</h2>
+            <p class="section-subtitle">
+                Interface intuitiva e moderna, desenvolvida para toda a família
+            </p>
+            <div class="screenshots-grid">
+                <!-- ESPAÇO PARA 4 SCREENSHOTS DO APP -->
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-calendar-check"></i>
+                        <p style="margin-top: 10px;">Calendário</p>
+                    </div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                        <p style="margin-top: 10px;">Relatórios</p>
+                    </div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-list"></i>
+                        <p style="margin-top: 10px;">Lista de Compras</p>
+                    </div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <p style="margin-top: 10px;">Giros</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <div class="container footer">
-        <span>© 2025 HCD Life – Organização compartilhada</span>
-        <span><i class="fas fa-heart" style="color: #ec4899;"></i> Para quantas pessoas você quiser</span>
-    </div>
-</main>
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Mais tempo e dinheiro para o que importa</h2>
+            <p class="section-subtitle">
+                Veja como o My Life transforma a organização da sua casa
+            </p>
+            <div class="benefits-grid">
+                <!-- BENEFÍCIO 1: FAMÍLIA FELIZ -->
+                <div class="benefit-item">
+                    <div class="benefit-image">
+                        <!-- ESPAÇO PARA FOTO DE FAMÍLIA FELIZ -->
+                        <div class="image-placeholder" style="height: 200px;">
+                            <i class="fas fa-users"></i>
+                            <p style="margin-top: 10px;">👨‍👩‍👧‍👦 Família unida</p>
+                            <p style="font-size: 10px;">[ familia-feliz.jpg ]</p>
+                        </div>
+                    </div>
+                    <h3 class="benefit-title">Harmonia Familiar</h3>
+                    <p class="benefit-description">
+                        Todos os membros da família participam da organização, 
+                        evitando conflitos e esquecimentos.
+                    </p>
+                </div>
+                <!-- BENEFÍCIO 2: ECONOMIA DE TEMPO -->
+                <div class="benefit-item">
+                    <div class="benefit-image">
+                        <!-- ESPAÇO PARA FOTO DE PESSOA RELAXANDO/ECONOMIA DE TEMPO -->
+                        <div class="image-placeholder" style="height: 200px;">
+                            <i class="fas fa-clock"></i>
+                            <p style="margin-top: 10px;">⏰ Mais tempo livre</p>
+                            <p style="font-size: 10px;">[ tempo-livre.jpg ]</p>
+                        </div>
+                    </div>
+                    <h3 class="benefit-title">Economia de Tempo</h3>
+                    <p class="benefit-description">
+                        Automatize lembretes, evite atrasos e tenha tudo organizado 
+                        em minutos, não em horas.
+                    </p>
+                </div>
+                <!-- BENEFÍCIO 3: ECONOMIA DE DINHEIRO -->
+                <div class="benefit-item">
+                    <div class="benefit-image">
+                        <!-- ESPAÇO PARA FOTO DE ECONOMIA/DINHEIRO -->
+                        <div class="image-placeholder" style="height: 200px;">
+                            <i class="fas fa-piggy-bank"></i>
+                            <p style="margin-top: 10px;">💰 Dinheiro economizado</p>
+                            <p style="font-size: 10px;">[ economia.jpg ]</p>
+                        </div>
+                    </div>
+                    <h3 class="benefit-title">Economia Financeira</h3>
+                    <p class="benefit-description">
+                        Controle gastos, evite juros de contas atrasadas e descubra 
+                        onde cortar despesas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-    function toggleMenu() {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.toggle('show');
-    }
+    <section class="videos">
+        <div class="container">
+            <h2 class="section-title">Veja o My Life em ação</h2>
+            <p class="section-subtitle">
+                Assista aos vídeos e entenda como o app funciona na prática
+            </p>
+            <div class="videos-grid">
+                <!-- VÍDEO 1: TOUR RÁPIDO -->
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <p style="margin-top: 10px;">Tour rápido (2 min)</p>
+                    </div>
+                    <div class="video-title">
+                        Conheça todas as funcionalidades em 2 minutos
+                    </div>
+                </div>
+                <!-- VÍDEO 2: DEPOIMENTO -->
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <p style="margin-top: 10px;">Depoimento de usuário</p>
+                    </div>
+                    <div class="video-title">
+                        Como o My Life ajudou a Família Silva
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Fecha o menu ao clicar em um link
-    document.querySelectorAll('#navLinks a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('show');
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O que nossos usuários dizem</h2>
+            <p class="section-subtitle">
+                Mais de 10 mil famílias já estão organizando a vida com o My Life
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Desde que comecei a usar o My Life, nunca mais esqueci uma conta. 
+                        O controle de gastos me ajudou a economizar R$ 500 por mês!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MA</div>
+                        <div class="author-info">
+                            <h4>Maria Aparecida</h4>
+                            <p>Usuária há 6 meses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Minha esposa e eu usamos juntos. Ela coloca os eventos das crianças, 
+                        eu cuido das contas. Perfeito para casais!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div class="author-info">
+                            <h4>João Silva</h4>
+                            <p>Usuário há 1 ano</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "A função de giros salvou minha relação com amigos. 
+                        Agora todo mundo sabe quanto deve e quando vai pagar."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CL</div>
+                        <div class="author-info">
+                            <h4>Carlos Lima</h4>
+                            <p>Usuário há 3 meses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Planos para todas as necessidades</h2>
+            <p class="section-subtitle">
+                Comece com 30 dias grátis. Sem compromisso, cancele quando quiser.
+            </p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Gratuito</h3>
+                        <div class="pricing-price">R$ 0 <small>/mês</small></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Visualizar todos os dados</li>
+                        <li><i class="fas fa-check"></i> Acessar relatórios</li>
+                        <li><i class="fas fa-check"></i> Dados sempre disponíveis</li>
+                        <li><i class="fas fa-times" style="color: var(--danger);"></i> Adicionar/Editar itens</li>
+                        <li><i class="fas fa-times" style="color: var(--danger);"></i> Contas recorrentes</li>
+                        <li><i class="fas fa-times" style="color: var(--danger);"></i> Múltiplos usuários</li>
+                    </ul>
+                    <a href="https://app.mylife.com.br" class="pricing-btn" style="background: #95a5a6;">
+                        Acessar Gratuito
+                    </a>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Premium Mensal</h3>
+                        <div class="pricing-price">R$ 17,90 <small>/mês</small></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Todos os recursos gratuitos</li>
+                        <li><i class="fas fa-check"></i> Adicionar, editar e excluir</li>
+                        <li><i class="fas fa-check"></i> Contas e eventos recorrentes</li>
+                        <li><i class="fas fa-check"></i> Múltiplos usuários</li>
+                        <li><i class="fas fa-check"></i> Controle de saldos e giros</li>
+                        <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                    </ul>
+                    <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=9a30d25477b445028fd6374c1b5d51f9" class="pricing-btn">
+                        Assinar Mensal
+                    </a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Premium Anual</h3>
+                        <div class="pricing-price">R$ 189,90 <small>/ano</small></div>
+                        <div style="color: var(--success); font-size: 14px;">Economize R$ 25</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Todos os recursos Premium</li>
+                        <li><i class="fas fa-check"></i> 2 meses grátis</li>
+                        <li><i class="fas fa-check"></i> Desconto exclusivo</li>
+                        <li><i class="fas fa-check"></i> Prioridade máxima</li>
+                        <li><i class="fas fa-check"></i> Acesso antecipado a novidades</li>
+                    </ul>
+                    <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=59d5d72cfcee476b99776abcbddc4adf" class="pricing-btn">
+                        Assinar Anual
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Comece a organizar sua vida hoje</h2>
+            <p>
+                30 dias grátis, sem necessidade de cartão de crédito. 
+                Cancele quando quiser, sem multas.
+            </p>
+            <div class="cta-buttons">
+                <a href="#pricing" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Testar Grátis
+                </a>
+                <a href="https://app.mylife.com.br" class="btn btn-outline btn-large" style="border-color: var(--primary-dark); color: var(--primary-dark);">
+                    <i class="fas fa-sign-in-alt"></i> Fazer Login
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        My Life
+                    </div>
+                    <p class="footer-description">
+                        O aplicativo definitivo para organizar a vida financeira e familiar. 
+                        Desenvolvido pelo Grupo Mundo Carol Ltda.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Produto</h4>
+                    <ul>
+                        <li><a href="#features">Funcionalidades</a></li>
+                        <li><a href="#pricing">Preços</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Carreiras</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Esse é um APP do Grupo Mundo Carol Ltda. | Conheça outras empresas do grupo:</p>
+                <p style="margin-top: 10px;">
+                    <a href="https://www.mundocarol.com.br" style="color: white; text-decoration: none; margin: 0 10px;">mundocarol.com.br</a> |
+                    <a href="https://www.mcembalagens.com.br" style="color: white; text-decoration: none; margin: 0 10px;">mcembalagens.com.br</a> |
+                    <a href="https://www.cactodeouro.com.br" style="color: white; text-decoration: none; margin: 0 10px;">cactodeouro.com.br</a> |
+                    <a href="https://www.hcdtec.com.br" style="color: white; text-decoration: none; margin: 0 10px;">hcdtec.com.br</a>
+                </p>
+                <p style="margin-top: 20px;">&copy; 2024 My Life. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
-    });
 
-    // Interação nos botões
-    document.querySelectorAll('.btn-primary, .btn-outline, .btn-cta').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if(!e.target.closest('[onclick]')) {
-                alert('🎉 30 dias grátis liberados! (simulação)');
+        // Header transparente no topo, sólido ao rolar
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'var(--gradient)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'var(--gradient)';
+                header.style.boxShadow = 'none';
             }
         });
-    });
-</script>
+    </script>
 </body>
 </html>
