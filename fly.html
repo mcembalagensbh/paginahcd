@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>📱 My Life App - Panfleto Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #f8faff 0%, #f0f5ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            line-height: 1.4;
+            color: #1e272e;
+        }
+
+        .flyer {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 36px;
+            padding: 24px 20px;
+            box-shadow: 0 25px 50px -8px rgba(65, 88, 208, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .badge-free {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 14px rgba(46, 204, 113, 0.3);
+        }
+
+        .badge-free i {
+            font-size: 12px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #4158D0, #C850C0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub {
+            font-size: 15px;
+            color: #4a5a6e;
+            margin-bottom: 24px;
+            font-weight: 500;
+            border-left: 4px solid #C850C0;
+            padding-left: 14px;
+            background: rgba(200, 80, 192, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .highlight-item {
+            background: white;
+            border-radius: 30px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 auto;
+        }
+
+        .highlight-item i {
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, #4158D0, #C850C0);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title i {
+            color: #4158D0;
+        }
+
+        .feature-list {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(65, 88, 208, 0.1);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .feature-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e9ecef;
+        }
+
+        .feature-row:last-child {
+            border-bottom: none;
+        }
+
+        .feature-name {
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-name i {
+            color: #2ecc71;
+            width: 18px;
+        }
+
+        .feature-tag {
+            background: #f0f5ff;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #4158D0;
+        }
+
+        .pricing-box {
+            background: linear-gradient(135deg, #4158D0, #C850C0);
+            color: white;
+            border-radius: 28px;
+            padding: 18px 20px;
+            margin: 20px 0 16px;
+            box-shadow: 0 15px 30px -8px #4158D0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .price-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .price-item small {
+            font-weight: 400;
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        .free-badge-small {
+            background: #2ecc71;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        .cta-button {
+            background: white;
+            border-radius: 40px;
+            padding: 18px 24px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #4158D0;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 10px 20px -5px rgba(65, 88, 208, 0.3);
+            border: 1px solid rgba(255,255,255,0.5);
+            margin: 24px 0 16px;
+            transition: all 0.2s;
+        }
+
+        .cta-button i {
+            margin-right: 8px;
+            background: linear-gradient(135deg, #4158D0, #C850C0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            color: #7f8c8d;
+            margin-top: 16px;
+        }
+
+        .apps-short {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .app-icon {
+            background: #eef2f9;
+            border-radius: 16px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer">
+        <!-- SELO GRÁTIS -->
+        <div class="badge-free">
+            <i class="fas fa-gift"></i> 30 DIAS GRÁTIS • SEM CARTÃO
+        </div>
+
+        <!-- TÍTULO PRINCIPAL -->
+        <h1>My Life<br>Gestor Doméstico</h1>
+        <div class="sub">
+            <i class="fas fa-users" style="margin-right: 6px;"></i> 
+            Contas, eventos, compras e finanças da família em um só app
+        </div>
+
+        <!-- DORES QUE RESOLVE (HIGHLIGHTS) -->
+        <div class="highlight-grid">
+            <div class="highlight-item"><i class="fas fa-exclamation-triangle"></i> Esquece contas?</div>
+            <div class="highlight-item"><i class="fas fa-calendar-times"></i> Perde eventos?</div>
+            <div class="highlight-item"><i class="fas fa-piggy-bank"></i> Juros?</div>
+            <div class="highlight-item"><i class="fas fa-search"></i> "Quem pagou?"</div>
+        </div>
+
+        <!-- FUNCIONALIDADES RESUMIDAS -->
+        <div class="section-title">
+            <i class="fas fa-crown"></i> 6 soluções completas
+        </div>
+
+        <div class="feature-list">
+            <div class="feature-row">
+                <span class="feature-name"><i class="fas fa-file-invoice-dollar"></i> Contas</span>
+                <span class="feature-tag">fixas + variáveis + código barras</span>
+            </div>
+            <div class="feature-row">
+                <span class="feature-name"><i class="fas fa-calendar-alt"></i> Eventos</span>
+                <span class="feature-tag">ícones, cores, recorrentes</span>
+            </div>
+            <div class="feature-row">
+                <span class="feature-name"><i class="fas fa-shopping-bag"></i> Gastos diários</span>
+                <span class="feature-tag">categorias + gráficos</span>
+            </div>
+            <div class="feature-row">
+                <span class="feature-name"><i class="fas fa-hand-holding-usd"></i> Giros (empréstimos)</span>
+                <span class="feature-tag">controle com amigos</span>
+            </div>
+            <div class="feature-row">
+                <span class="feature-name"><i class="fas fa-shopping-cart"></i> Lista compras</span>
+                <span class="feature-tag">colaborativa</span>
+            </div>
+            <div class="feature-row">
+                <span class="feature-name"><i class="fas fa-wallet"></i> Saldo central</span>
+                <span class="feature-tag">atualização automática</span>
+            </div>
+        </div>
+
+        <!-- MULTIUSUÁRIO (DIFERENCIAL) -->
+        <div style="background: #f2f0ff; border-radius: 24px; padding: 14px 18px; margin: 16px 0;">
+            <span style="font-weight: 700; font-size: 15px; display: flex; gap: 8px;">
+                <i class="fas fa-users" style="color: #4158D0;"></i> 
+                Múltiplos usuários na mesma conta
+            </span>
+            <span style="font-size: 13px; color: #2d3a4a; display: block; margin-top: 6px;">
+                Marido, esposa, filhos – tudo sincronizado. Cada ação tem registro de quem fez.
+            </span>
+        </div>
+
+        <!-- ESTATÍSTICAS RÁPIDAS -->
+        <div style="display: flex; gap: 10px; margin: 16px 0; flex-wrap: wrap;">
+            <span style="background: white; border-radius: 40px; padding: 6px 14px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> 10k+ famílias</span>
+            <span style="background: white; border-radius: 40px; padding: 6px 14px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"><i class="fas fa-chart-line" style="color: #4158D0;"></i> 98% aprovam</span>
+            <span style="background: white; border-radius: 40px; padding: 6px 14px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"><i class="fas fa-clock" style="color: #C850C0;"></i> +5h/semana</span>
+        </div>
+
+        <!-- PREÇO SIMPLES -->
+        <div class="pricing-box">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                <i class="fas fa-star" style="font-size: 20px;"></i>
+                <span style="font-weight: 800; font-size: 20px;">Planos</span>
+            </div>
+            <div class="price-row">
+                <span class="price-item"><i class="fas fa-eye"></i> Grátis <small>(visualização)</small></span>
+                <span class="price-item"><i class="fas fa-crown"></i> R$ 17,90/mês</span>
+                <span class="price-item"><i class="fas fa-calendar-alt"></i> R$ 189,90/ano</span>
+            </div>
+            <div style="margin-top: 14px; font-size: 14px; background: rgba(255,255,255,0.2); border-radius: 40px; padding: 8px 14px; text-align: center;">
+                ⭐ Premium: 30 dias grátis • Sem cartão agora
+            </div>
+        </div>
+
+        <!-- O QUE O PREMIUM DESBLOQUEIA -->
+        <div style="margin: 16px 0 8px;">
+            <span style="font-weight: 700; font-size: 15px;"><i class="fas fa-lock-open" style="color: #2ecc71;"></i> Premium desbloqueia:</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Adicionar contas</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Pagar com 1 clique</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Recorrências</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Criar eventos</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Múltiplos usuários</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Lista compras</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Giros</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Categorias</span>
+            <span class="app-icon"><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Gráficos</span>
+        </div>
+
+        <!-- LINK WHATSAPP / CTA -->
+        <a href="https://mylife.app.br" class="cta-button">
+            <i class="fas fa-rocket"></i> TESTAR GRÁTIS 30 DIAS
+        </a>
+
+        <!-- FRASE FINAL -->
+        <div style="text-align: center; font-size: 13px; color: #2d4059;">
+            ⏰ Nunca mais perca contas ou eventos. <br>Organize sua família em minutos.
+        </div>
+
+        <!-- GRUPO EMPRESAS -->
+        <hr>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; font-size: 10px; color: #7f8c8d;">
+            <span>Grupo Mundo Carol</span>
+            <span>•</span>
+            <span>mylife.app.br</span>
+            <span>•</span>
+            <span>@appmylife</span>
+        </div>
+
+        <div class="footer-note">
+            My Life • App oficial • 2024
+        </div>
+    </div>
+</body>
+</html>
