@@ -50,13 +50,13 @@
             padding: 0 20px;
         }
 
-        /* Header Moderno */
+        /* Header Compacto */
         .header {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             color: var(--dark);
-            padding: 12px 0;
+            padding: 8px 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -68,22 +68,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            white-space: nowrap;
         }
 
         .logo i {
-            font-size: 24px;
+            font-size: 22px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -91,55 +91,41 @@
 
         .nav-buttons {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 10px;
             align-items: center;
         }
 
         .free-badge {
             background: linear-gradient(135deg, var(--success), #27ae60);
             color: white;
-            padding: 6px 15px;
+            padding: 5px 12px;
             border-radius: 50px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             white-space: nowrap;
             box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
         }
 
         .free-badge i {
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .btn {
-            padding: 10px 22px;
+            padding: 8px 18px;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
-            font-size: 14px;
+            font-size: 13px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             white-space: nowrap;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
         }
 
         .btn-primary {
@@ -180,11 +166,11 @@
             left: 100%;
         }
 
-        /* Hero Section Ultra Moderno */
+        /* Ajuste do espaçamento do hero para compensar o header menor */
         .hero {
             background: var(--gradient-soft);
             color: var(--dark);
-            padding: 120px 0 70px;
+            padding: 90px 0 70px;
             position: relative;
             overflow: hidden;
         }
@@ -248,14 +234,15 @@
         }
 
         .pain-point i {
-            width: 35px;
-            height: 35px;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
             background: var(--gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 14px;
             color: white;
         }
 
@@ -714,7 +701,7 @@
             color: var(--gray);
         }
 
-        /* Pricing Cards Ultra Detalhados */
+        /* Pricing Cards - CORRIGIDO: sem menção a 2 meses grátis */
         .pricing {
             padding: 80px 0;
             background: var(--gradient-soft);
@@ -800,6 +787,16 @@
             font-weight: 400;
             color: var(--gray);
             -webkit-text-fill-color: var(--gray);
+        }
+
+        .pricing-free-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-top: 8px;
         }
 
         .pricing-features {
@@ -898,27 +895,28 @@
             flex-wrap: wrap;
         }
 
-        /* Footer Moderno */
+        /* Footer Compacto e Profissional */
         .footer {
             background: var(--dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 40px 0 20px;
         }
 
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
         .footer-logo {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 6px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -930,21 +928,31 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .footer-description {
-            opacity: 0.7;
-            line-height: 1.7;
-            font-size: 14px;
-            margin-bottom: 20px;
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
         }
 
         .footer-social {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .footer-social a {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
@@ -953,6 +961,7 @@
             color: white;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         .footer-social a:hover {
@@ -960,56 +969,36 @@
             transform: translateY(-3px);
         }
 
-        .footer-links h4 {
-            font-size: 16px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            font-size: 13px;
-            opacity: 0.6;
-        }
-
         .footer-grupo {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
-            margin: 20px 0;
-            font-size: 13px;
+            margin: 15px 0;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+        }
+
+        .footer-grupo span {
+            color: rgba(255,255,255,0.5);
         }
 
         .footer-grupo a {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .footer-grupo a:hover {
             color: white;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            font-size: 11px;
+            opacity: 0.6;
         }
 
         /* Responsive */
@@ -1032,16 +1021,16 @@
             .benefits-grid,
             .testimonials-grid,
             .videos-grid,
-            .screenshots-grid,
-            .footer-main {
+            .screenshots-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-main {
+            .footer-content {
+                flex-direction: column;
                 text-align: center;
             }
 
-            .footer-social {
+            .footer-links {
                 justify-content: center;
             }
 
@@ -1070,8 +1059,8 @@
             }
 
             .btn {
-                padding: 8px 16px;
-                font-size: 13px;
+                padding: 6px 14px;
+                font-size: 12px;
             }
         }
 
@@ -1129,9 +1118,6 @@
                 </span>
                 <a href="#pricing" class="btn btn-primary">
                     <i class="fas fa-rocket"></i> Começar Grátis
-                </a>
-                <a href="https://mylife.app.br" class="btn btn-outline">
-                    <i class="fas fa-sign-in-alt"></i> Login
                 </a>
             </div>
         </div>
@@ -1234,7 +1220,6 @@
                         <li><i class="fas fa-check-circle"></i> Desfazer pagamento</li>
                         <li><i class="fas fa-check-circle"></i> Frequências: único, semanal, mensal, anual</li>
                         <li><i class="fas fa-check-circle"></i> Exceções para contas recorrentes</li>
-                        <li><i class="fas fa-check-circle"></i> Cálculo automático de juros</li>
                     </ul>
                 </div>
 
@@ -1254,9 +1239,7 @@
                         <li><i class="fas fa-check-circle"></i> Horário e local</li>
                         <li><i class="fas fa-check-circle"></i> Eventos recorrentes</li>
                         <li><i class="fas fa-check-circle"></i> Visualização no calendário</li>
-                        <li><i class="fas fa-check-circle"></i> Aniversários automáticos</li>
-                        <li><i class="fas fa-check-circle"></i> Consultas médicas</li>
-                        <li><i class="fas fa-check-circle"></i> Compromissos do casal</li>
+                        <li><i class="fas fa-check-circle"></i> Aniversários e consultas</li>
                     </ul>
                 </div>
 
@@ -1275,8 +1258,6 @@
                         <li><i class="fas fa-check-circle"></i> Gráficos por mês</li>
                         <li><i class="fas fa-check-circle"></i> Comparativo mensal</li>
                         <li><i class="fas fa-check-circle"></i> Mercado, lazer, médico, etc</li>
-                        <li><i class="fas fa-check-circle"></i> Fastfood e emergências</li>
-                        <li><i class="fas fa-check-circle"></i> Oficina e manutenção</li>
                         <li><i class="fas fa-check-circle"></i> Devolução de saldo ao excluir</li>
                     </ul>
                 </div>
@@ -1297,8 +1278,6 @@
                         <li><i class="fas fa-check-circle"></i> Recebimentos registrados</li>
                         <li><i class="fas fa-check-circle"></i> Saldo atual automático</li>
                         <li><i class="fas fa-check-circle"></i> Histórico de movimentações</li>
-                        <li><i class="fas fa-check-circle"></i> Total pago / recebido</li>
-                        <li><i class="fas fa-check-circle"></i> Descrição personalizada</li>
                     </ul>
                 </div>
 
@@ -1318,7 +1297,6 @@
                         <li><i class="fas fa-check-circle"></i> Badge com contador</li>
                         <li><i class="fas fa-check-circle"></i> Separado por pendentes/comprados</li>
                         <li><i class="fas fa-check-circle"></i> Múltiplos usuários</li>
-                        <li><i class="fas fa-check-circle"></i> Histórico de itens</li>
                     </ul>
                 </div>
 
@@ -1337,9 +1315,7 @@
                         <li><i class="fas fa-check-circle"></i> Adicionar/retirar valores</li>
                         <li><i class="fas fa-check-circle"></i> Múltiplos saldos</li>
                         <li><i class="fas fa-check-circle"></i> Extrato de 60 dias</li>
-                        <li><i class="fas fa-check-circle"></i> Histórico de movimentações</li>
                         <li><i class="fas fa-check-circle"></i> Devolução ao excluir gasto</li>
-                        <li><i class="fas fa-check-circle"></i> Relatórios financeiros</li>
                     </ul>
                 </div>
             </div>
@@ -1551,6 +1527,7 @@
                     <div class="pricing-header">
                         <h3 class="pricing-name">Gratuito</h3>
                         <div class="pricing-price">R$ 0</div>
+                        <div class="pricing-free-badge">30 dias grátis do Premium</div>
                     </div>
                     
                     <div class="pricing-features">
@@ -1597,6 +1574,7 @@
                     <div class="pricing-header">
                         <h3 class="pricing-name">Premium Mensal</h3>
                         <div class="pricing-price">R$ 17,90</div>
+                        <div class="pricing-free-badge">30 dias grátis</div>
                     </div>
 
                     <div class="pricing-features">
@@ -1668,6 +1646,7 @@
                         <h3 class="pricing-name">Premium Anual</h3>
                         <div class="pricing-price">R$ 189,90</div>
                         <div style="color: var(--success); font-size: 14px; margin-top: 5px;">Economize R$ 25</div>
+                        <div class="pricing-free-badge">30 dias grátis</div>
                     </div>
 
                     <div class="pricing-features">
@@ -1676,7 +1655,7 @@
                                 <i class="fas fa-crown"></i> Todos os recursos Premium
                             </div>
                             <ul class="pricing-features-list">
-                                <li><i class="fas fa-check"></i> <strong>2 meses grátis</strong> (R$25 de desconto)</li>
+                                <li><i class="fas fa-check"></i> <strong>Economia de R$25</strong> em relação ao mensal</li>
                                 <li><i class="fas fa-check"></i> Tudo do plano Mensal</li>
                                 <li><i class="fas fa-check"></i> Prioridade máxima no suporte</li>
                                 <li><i class="fas fa-check"></i> Acesso antecipado a novidades</li>
@@ -1689,7 +1668,7 @@
                     </div>
 
                     <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=59d5d72cfcee476b99776abcbddc4adf" class="pricing-btn">
-                        Assinar Anual • Mais vantajoso
+                        Assinar Anual • Mais econômico
                     </a>
                 </div>
             </div>
@@ -1710,57 +1689,31 @@
                 <a href="#pricing" class="btn btn-gradient btn-large">
                     <i class="fas fa-gift"></i> Quero testar grátis
                 </a>
-                <a href="https://mylife.app.br" class="btn btn-outline btn-large">
-                    <i class="fas fa-sign-in-alt"></i> Já tenho conta
-                </a>
             </div>
         </div>
     </section>
 
+    <!-- Footer Compacto -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-main">
-                <div>
-                    <div class="footer-logo">
-                        <i class="fas fa-home"></i>
-                        My Life
-                    </div>
-                    <p class="footer-description">
-                        O aplicativo definitivo para organizar a vida financeira e familiar. 
-                        Desenvolvido pelo Grupo Mundo Carol Ltda.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-home"></i>
+                    My Life
                 </div>
                 <div class="footer-links">
-                    <h4>Produto</h4>
-                    <ul>
-                        <li><a href="#">Funcionalidades</a></li>
-                        <li><a href="#pricing">Preços</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Suporte</a></li>
-                    </ul>
+                    <a href="#">Funcionalidades</a>
+                    <a href="#pricing">Preços</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Suporte</a>
+                    <a href="#">Termos</a>
+                    <a href="#">Privacidade</a>
                 </div>
-                <div class="footer-links">
-                    <h4>Empresa</h4>
-                    <ul>
-                        <li><a href="#">Sobre nós</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Carreiras</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Termos de uso</a></li>
-                        <li><a href="#">Política de privacidade</a></li>
-                        <li><a href="#">Cookies</a></li>
-                    </ul>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             
@@ -1776,7 +1729,7 @@
                 <a href="https://www.hcdtec.com.br">hcdtec.com.br</a>
             </div>
             
-            <div class="footer-bottom">
+            <div class="footer-copyright">
                 My Life • Todos os direitos reservados • 2024
             </div>
         </div>
