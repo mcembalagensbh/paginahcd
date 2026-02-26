@@ -30,6 +30,11 @@
             border-radius: 32px;
             box-shadow: 0 20px 40px -15px rgba(65, 88, 208, 0.25);
             overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         .card-content {
@@ -60,6 +65,11 @@
             justify-content: center;
             color: white;
             font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: rotate(5deg);
         }
 
         .logo-text {
@@ -82,6 +92,13 @@
             gap: 4px;
             border: 1px solid #c8e6c9;
             white-space: nowrap;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .free-badge i {
@@ -112,6 +129,7 @@
             border-radius: 16px;
             display: inline-block;
             width: 100%;
+            border: 1px solid #e2e8f0;
         }
 
         /* PAIN POINTS - OTIMIZADO PARA CELULAR */
@@ -130,6 +148,13 @@
             border-radius: 18px;
             padding: 14px 16px;
             border: 1px solid #e9ecf5;
+            transition: all 0.3s ease;
+        }
+
+        .pain-row:hover {
+            border-color: #4158D0;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(65, 88, 208, 0.1);
         }
 
         .pain-icon {
@@ -163,6 +188,7 @@
         .pain-row.highlight {
             background: linear-gradient(135deg, #e8eefc, #f0f3ff);
             border-color: #4158D0;
+            border-width: 2px;
         }
 
         /* Seções */
@@ -195,6 +221,13 @@
             border-radius: 20px;
             padding: 16px 12px;
             border: 1px solid #edf2f9;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(65, 88, 208, 0.1);
+            border-color: #4158D0;
         }
 
         .feature-icon-small {
@@ -230,6 +263,13 @@
             font-weight: 600;
             color: #334155;
             border: 1px solid #e2e8f0;
+            transition: background 0.3s ease;
+        }
+
+        .badge:hover {
+            background: #4158D0;
+            color: white;
+            border-color: #4158D0;
         }
 
         .badge i {
@@ -257,6 +297,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .diff-item:hover {
+            transform: translateX(5px);
         }
 
         .diff-item i {
@@ -297,6 +342,11 @@
 
         .stat {
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: scale(1.1);
         }
 
         .stat-number {
@@ -330,6 +380,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .plan-card:hover {
+            transform: scale(1.02);
+            border-color: #4158D0;
+            box-shadow: 0 10px 25px rgba(65, 88, 208, 0.15);
         }
 
         .plan-card.popular {
@@ -383,6 +441,12 @@
             text-align: center;
             color: white;
             margin: 24px 0 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 30px rgba(65, 88, 208, 0.3);
         }
 
         .cta h3 {
@@ -410,6 +474,13 @@
             box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 280px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background: #f0f3ff;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
@@ -435,12 +506,50 @@
         .footer-links a {
             color: #475569;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #4158D0;
+            text-decoration: underline;
         }
 
         .social i {
             font-size: 16px;
             margin: 0 8px;
             color: #94a3b8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social i:hover {
+            color: #4158D0;
+            transform: translateY(-3px);
+        }
+
+        /* Link do app */
+        .app-link {
+            text-align: center;
+            margin: 10px 0 5px;
+        }
+
+        .app-link a {
+            color: #4158D0;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            background: #f0f3ff;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .app-link a:hover {
+            background: #4158D0;
+            color: white;
         }
     </style>
 </head>
@@ -468,6 +577,14 @@
             <div class="hero-sub">
                 <i class="fas fa-users" style="margin-right: 6px;"></i> 
                 Conecte sua família • 10k+ famílias
+            </div>
+
+            <!-- Link do App -->
+            <div class="app-link">
+                <a href="https://mylife.app.br" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe"></i> mylife.app.br
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
 
             <!-- PAIN POINTS - SUAS 5 FRASES EM DESTAQUE -->
@@ -617,7 +734,7 @@
             </div>
 
             <div class="plans">
-                <div class="plan-card">
+                <div class="plan-card" onclick="window.open('https://mylife.app.br', '_blank')">
                     <div class="plan-info">
                         <h4>Gratuito</h4>
                         <div class="plan-price">R$ 0</div>
@@ -625,7 +742,7 @@
                     </div>
                     <div class="plan-tag">Visualização</div>
                 </div>
-                <div class="plan-card popular">
+                <div class="plan-card popular" onclick="window.open('https://mylife.app.br', '_blank')">
                     <div class="plan-info">
                         <h4>Premium Mensal</h4>
                         <div class="plan-price">R$ 17,90 <small>/mês</small></div>
@@ -633,7 +750,7 @@
                     </div>
                     <div class="plan-tag" style="background: #C850C0;">MAIS VENDIDO</div>
                 </div>
-                <div class="plan-card">
+                <div class="plan-card" onclick="window.open('https://mylife.app.br', '_blank')">
                     <div class="plan-info">
                         <h4>Premium Anual</h4>
                         <div class="plan-price">R$ 189,90 <small>/ano</small></div>
@@ -647,7 +764,7 @@
             <div class="cta">
                 <h3>30 dias grátis</h3>
                 <p>Sem cartão • Sem compromisso</p>
-                <a href="#" class="btn-cta">
+                <a href="https://mylife.app.br" target="_blank" rel="noopener noreferrer" class="btn-cta">
                     <i class="fas fa-rocket"></i> COMEÇAR GRÁTIS
                 </a>
             </div>
@@ -655,17 +772,20 @@
             <!-- Footer -->
             <div class="footer">
                 <div class="footer-links">
-                    <a href="#">Site</a>
-                    <a href="#">Suporte</a>
-                    <a href="#">Termos</a>
-                    <a href="#">Privacidade</a>
+                    <a href="https://mylife.app.br" target="_blank" rel="noopener noreferrer">Site</a>
+                    <a href="https://mylife.app.br/suporte" target="_blank" rel="noopener noreferrer">Suporte</a>
+                    <a href="https://mylife.app.br/termos" target="_blank" rel="noopener noreferrer">Termos</a>
+                    <a href="https://mylife.app.br/privacidade" target="_blank" rel="noopener noreferrer">Privacidade</a>
                 </div>
                 <div class="social">
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-youtube"></i>
+                    <i class="fab fa-instagram" onclick="window.open('https://instagram.com/mylife.app.br', '_blank')"></i>
+                    <i class="fab fa-facebook" onclick="window.open('https://facebook.com/mylife.app.br', '_blank')"></i>
+                    <i class="fab fa-youtube" onclick="window.open('https://youtube.com/@mylife.app.br', '_blank')"></i>
                 </div>
                 <div>My Life • 2024 • v2.0</div>
+                <div style="font-size: 10px; opacity: 0.7;">
+                    <i class="fas fa-link"></i> mylife.app.br
+                </div>
             </div>
         </div>
     </div>
